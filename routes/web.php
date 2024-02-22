@@ -15,12 +15,9 @@ Route::get('/recovery',function(){
     return view('recovery');
 });
 
-Route::get('/users',function(){
-    return view('users');
-});
-
 Route::post('/confirm','TblUserController@store');
-Route::get('/check','TblUserController@check');
 
 
-Route::get('/users', [TblUserController::class, 'index'])->name('users.index');
+// Route::get('/users', [TblUserController::class, 'index'])->name('users.index');
+Route::get('/users','TblUserController@index');
+Route::get('/users/${id}','TblUserController@show');

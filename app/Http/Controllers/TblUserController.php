@@ -21,18 +21,23 @@ class TblUserController extends Controller
         return view('login');
     }
 
-    use App\Models\tbl_user;
-
-    public function index()
-    {
+    public function index(){
         $users = tbl_user::all();
-        return view('users.index', compact('users'));
+        return view('users',['users' => $users,
+    ]);
     }
     
+    public function show($id) {
+        $user = User::find($id);
+    
+        if (!$user) {
+            abort(404, 'User not found');
+        }
+            return view('users.show', ['user' => $user]);
+    }
     public function create(){
     }
-    public function show(tbl_user $tbl_user){
-    }
+
     public function edit(tbl_user $tbl_user){
     }
     public function update(Request $request, tbl_user $tbl_user){
